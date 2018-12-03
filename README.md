@@ -16,6 +16,7 @@
 
 * Reliably sending messages as part of a database transaction 
 
+
 ### Chapter Summary
 
 * The microservice architecture is a distributed architecture, so interprocess communication plays a key role.
@@ -34,7 +35,7 @@
 
 **Interaction Styles** (between a service and its clients)			
 
-![image alt text](image_0.png)			
+![image alt text](image_0.png)
 
 *One-to-one*—Each client request is processed by exactly one service. 
 
@@ -57,6 +58,7 @@
 
 *Publish/async responses*—A client publishes a request message and then waits for a certain amount of time for responses from interested services. 
 
+
 ### APIs!
 
 * API-first to designing services: [handy blog post](https://www.programmableweb.com/news/how-to-design-great-apis-api-first-design-and-raml/how-to/2015/07/10)
@@ -71,7 +73,6 @@
 
     * PATCH—When you make a backward-compatible bug fix 
 
-				
 
 ### Using REST
 
@@ -97,7 +98,6 @@
 
     * Reduced availability. Because the client and service communicate directly without an intermediary to buffer messages, they must both be running for the duration of the exchange.
 
-					
 
 ### Using gRPC
 
@@ -119,9 +119,6 @@
 
     * Older firewalls might not support HTTP/2.
 
-				 				
-
-			
 
 ### Handling Partial Failure
 
@@ -130,10 +127,6 @@
 * Possible workarounds include network timeouts, limiting the number of outstanding requests from a client to a service and using the circuit breaker pattern
 
 * Pattern: [Circuit breaker](http://microservices.io/patterns/reliability/circuit-breaker.htm): An RPI proxy that immediately rejects invocations for a timeout period after the number of consecutive failures exceeds a specified threshold.![image alt text](image_2.png)
-
-									
-
-			
 
 ### Service Discovery
 
@@ -149,8 +142,6 @@ Example is a combination of two patterns: self registration and client-side disc
 
 ![image alt text](image_3.png)
 
- 	 	 		
-
 Pattern: [Self registration](http://microservices.io/patterns/self-registration.htm): A service instance registers itself with the service registry. 
 
 Pattern: [Client-side discovery](http://microservices.io/patterns/client- side-discovery.html): A service client retrieves the list of available service instances from the service registry and load balances across them.	
@@ -161,13 +152,10 @@ Examples combines two patterns:
 
 ![image alt text](image_4.png)		
 
- 	 	 		
-
 Pattern: [3rd party registration](http://microservices.io/patterns/3rd-party-registration.html): Service instances are automatically registered with the service registry by a third party.				
 
 Pattern: [Server-side discovery](http://microservices.io/patterns/server-side-discovery.html): A client makes a request to a router, which is responsible for service discovery. 
 
-								
 
 ### Asynchronous Messaging
 
@@ -186,6 +174,7 @@ Pattern: [Server-side discovery](http://microservices.io/patterns/server-side-di
 *Event*—A message indicating that something notable has occurred in the sender. An event is often a domain event, which represents a state change of a domain object such as an Order, or a Customer. 
 
 Popular Open Source Message Brokers: [ActiveMQ](http://activemq.apache.org), [RabbitMQ](https://www.rabbitmq.com), [Apache Kafka](http://kafka.apache.org)
+
 
 ### Transactional Messaging			
 
@@ -210,6 +199,7 @@ Eliminating Synchronous Interaction
     2. Replicate data
 
     3. Finish processing after returning a response*			*
+
 
 ## Chapter 4: **_Managing transactions with sagas_**
 
@@ -239,9 +229,7 @@ Transactions are an essential ingredient of every enterprise application. Withou
 
 ### Sagas 
 
-*Sagas *are mechanisms to maintain data consistency in a microservice architecture without having to use distributed transactions. You define a saga for each system command that needs to update data in multiple services. A saga is a sequence of local transactions. Each local transaction updates data within a single service using the familiar ACID transaction frameworks and libraries. The system operation initiates the first step of the saga. The completion of a local transaction triggers the execution of the next local transaction. 
-
-				
+* Sagas are mechanisms to maintain data consistency in a microservice architecture without having to use distributed transactions. You define a saga for each system command that needs to update data in multiple services. A saga is a sequence of local transactions. Each local transaction updates data within a single service using the familiar ACID transaction frameworks and libraries. The system operation initiates the first step of the saga. The completion of a local transaction triggers the execution of the next local transaction. 
 
 * Transactions that span a single service can be ACID (Atomicity, Consistency, Isolation, Durability)
 
@@ -257,11 +245,8 @@ Example: the Create Order Saga
 
 ![image alt text](image_6.png)					
 
-			
 
 ### Coordinating Sagas
-
-		 	 	 							
 
 **different ways to structure a saga’s coordination logic **
 
@@ -298,16 +283,11 @@ Example: the Create Order Saga
 * Drawbacks
 
     * The risk of centralizing too much logic in the orchestrator
-
-		 	 	 		
+	 		
 
 ### Modeling Saga Orchestrators as State Machines				
 
-					
-
 A good way to model a saga orchestrator is as a state machine. A *state machine *consists of a set of states and a set of transitions between states that are triggered by events. Each transition can have an action, which for a saga is the invocation of a saga participant. The transitions between states are triggered by the completion of a local transaction performed by a saga participant. The current state and the specific outcome of the local transaction determine the state transition and what action, if any, to perform.	
-
-		
 
 **_** Bottom line: Orchestration is recommended for all but the simplest sagas **_**
 
@@ -346,7 +326,6 @@ rency mechanism.
 
 *Retriable transactions*—Transactions that follow the pivot transaction and are guaranteed to succeed.
 
-			 
 
 ### Example: Order Service and the Create Order Saga
 
@@ -360,13 +339,10 @@ rency mechanism.
 
 * *Saga participant proxy classes, *such *as *KitchenServiceProxy—Each proxy class defines a saga participant’s messaging API, which consists of the command channel, the command message types, and the reply types. 
 
-				
-
 **Illustratration of both forward and compensating transactions**
 
 ![image alt text](image_10.png)
 
-			
 
 ### Questions / Observations:
 
