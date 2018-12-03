@@ -144,7 +144,7 @@ Example is a combination of two patterns: self registration and client-side disc
 
 Pattern: [Self registration](http://microservices.io/patterns/self-registration.htm): A service instance registers itself with the service registry. 
 
-Pattern: [Client-side discovery](http://microservices.io/patterns/client- side-discovery.html): A service client retrieves the list of available service instances from the service registry and load balances across them.	
+Pattern: [Client-side discovery](http://microservices.io/patterns/client-side-discovery.html): A service client retrieves the list of available service instances from the service registry and load balances across them.	
 
 **Platform-Provided Service Discovery Patterns**
 
@@ -182,7 +182,7 @@ Popular Open Source Message Brokers: [ActiveMQ](http://activemq.apache.org), [Ra
 
 * Suggested Patterns
 
-    * Pattern: [Transactional outbox](http://microservices.io/patterns/data/transactional-out- box.html): Publish an event or message as part of a database transaction by saving it in an OUTBOX in the database.
+    * Pattern: [Transactional outbox](http://microservices.io/patterns/data/transactional-out-box.html): Publish an event or message as part of a database transaction by saving it in an OUTBOX in the database.
 
     * Pattern: [Polling publisher](http://microservices.io/patterns/data/polling-publisher.html): Publish messages by polling the outbox in the database.
 
@@ -198,7 +198,7 @@ Eliminating Synchronous Interaction
 
     2. Replicate data
 
-    3. Finish processing after returning a response*			*
+    3. Finish processing after returning a response
 
 
 ## Chapter 4: **_Managing transactions with sagas_**
