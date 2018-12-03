@@ -1,26 +1,22 @@
-Microservices Patterns - Week 2
-
-Led by Liz Kalina
-
-Chapters covered 3 and 4
+# Microservices Patterns - Week 2 (Liz)
 
 ## Chapter 3: **_Interprocess communication in a microservice architecture_**
 
-*This chapter covers*
+### This chapter covers
 
-* Applying the communication patterns: Remote procedure invocation, Circuit breaker, Client-side discovery, Self registration, Server-side discovery, Third party registration, Asynchronous messaging, Transactional outbox, Transaction log tailing, Polling publisher  
+* Applying the communication patterns: Remote procedure invocation, Circuit breaker, Client-side discovery, Self registration, Server-side discovery, Third party registration, Asynchronous messaging, Transactional outbox, Transaction log tailing, Polling publisher
 
-* The importance of interprocess communication in a microservice architecture  
+* The importance of interprocess communication in a microservice architecture
 
-* Defining and evolving APIs  
+* Defining and evolving APIs
 
-* The various interprocess communication options  and their trade-offs  
+* The various interprocess communication options and their trade-offs
 
-* The benefits of services that communicate using asynchronous messaging  
+* The benefits of services that communicate using asynchronous messaging
 
 * Reliably sending messages as part of a database transaction 
 
-Chapter Summary
+### Chapter Summary
 
 * The microservice architecture is a distributed architecture, so interprocess communication plays a key role.
 
@@ -46,7 +42,7 @@ Chapter Summary
 
 *Synchronous*—The client expects a timely response from the service and might even block while it waits.
 
-*Asynchronous*—The client doesn’t block, and the response, if any, isn’t necessarily sent immediately. 						
+*Asynchronous*—The client doesn’t block, and the response, if any, isn’t necessarily sent immediately. 			
 
 **one-to-one interactions**
 
@@ -61,7 +57,7 @@ Chapter Summary
 
 *Publish/async responses*—A client publishes a request message and then waits for a certain amount of time for responses from interested services. 
 
-APIs!
+### APIs!
 
 * API-first to designing services: [handy blog post](https://www.programmableweb.com/news/how-to-design-great-apis-api-first-design-and-raml/how-to/2015/07/10)
 
@@ -77,7 +73,7 @@ APIs!
 
 				
 
-Using REST
+### Using REST
 
 * [Maturity Model for REST](https://martinfowler.com/articles/richardsonMaturityModel.html)
 
@@ -103,7 +99,7 @@ Using REST
 
 					
 
-Using gRPC
+### Using gRPC
 
 * [gRPC](http://www.grpc.io) is a binary message-based protocol and framework for writing cross-language clients and servers
 
@@ -127,7 +123,7 @@ Using gRPC
 
 			
 
-Handling Partial Failure
+### Handling Partial Failure
 
 * It’s important to build your API with partial failure in mind
 
@@ -139,7 +135,7 @@ Handling Partial Failure
 
 			
 
-Service Discovery
+### Service Discovery
 
 Two ways to handle service discovery
 
@@ -173,7 +169,7 @@ Pattern: [Server-side discovery](http://microservices.io/patterns/server-side-di
 
 								
 
-Asynchronous Messaging
+### Asynchronous Messaging
 
 * Services communicate by asynchronously exchanging messages. A messaging-based application typically uses a *message broker*, which acts as an intermediary between the services, although another option is to use a brokerless architecture, where the services communicate directly with each other.
 
@@ -191,7 +187,7 @@ Asynchronous Messaging
 
 Popular Open Source Message Brokers: [ActiveMQ](http://activemq.apache.org), [RabbitMQ](https://www.rabbitmq.com), [Apache Kafka](http://kafka.apache.org)
 
-Transactional Messaging			
+### Transactional Messaging			
 
 * because distributed transactions aren’t a good choice for modern apps, we need an alternative
 
@@ -229,7 +225,7 @@ Eliminating Synchronous Interaction
 
 ![image alt text](image_5.jpg)
 
-Chapter Summary
+### Chapter Summary
 
 * Some system operations need to update data scattered across multiple services. Traditional, XA/2PC-based distributed transactions aren’t a good fit for modern applications. A better approach is to use the Saga pattern. A saga is sequence of local transactions that are coordinated using messaging. Each local transaction updates data in a single service. Because each local transaction commits its changes, if a saga must roll back due to the violation of a business rule, it must execute compensating transactions to explicitly undo changes.
 
@@ -241,7 +237,7 @@ Chapter Summary
 
 Transactions are an essential ingredient of every enterprise application. Without transactions it would be impossible to maintain data consistency. 				
 
-Sagas 
+### Sagas 
 
 *Sagas *are mechanisms to maintain data consistency in a microservice architecture without having to use distributed transactions. You define a saga for each system command that needs to update data in multiple services. A saga is a sequence of local transactions. Each local transaction updates data within a single service using the familiar ACID transaction frameworks and libraries. The system operation initiates the first step of the saga. The completion of a local transaction triggers the execution of the next local transaction. 
 
@@ -263,7 +259,7 @@ Example: the Create Order Saga
 
 			
 
-Coordinating Sagas
+### Coordinating Sagas
 
 		 	 	 							
 
@@ -305,7 +301,7 @@ Coordinating Sagas
 
 		 	 	 		
 
-Modeling Saga Orchestrators as State Machines				
+### Modeling Saga Orchestrators as State Machines				
 
 					
 
@@ -315,11 +311,9 @@ A good way to model a saga orchestrator is as a state machine. A *state machine 
 
 **_** Bottom line: Orchestration is recommended for all but the simplest sagas **_**
 
-Handling Lack of Isolation
+### Handling Lack of Isolation
 
-Problem: The lack of isolation potentially causes what the database literature calls *anomalies*. An anomaly is when a transaction reads or writes data in a way that it wouldn’t if transactions were executed one at time. 
-
-1. 		
+Problem: The lack of isolation potentially causes what the database literature calls *anomalies*. An anomaly is when a transaction reads or writes data in a way that it wouldn’t if transactions were executed one at time. 	
 
 **Anomaly Types**
 
@@ -354,7 +348,7 @@ rency mechanism.
 
 			 
 
-Example: Order Service and the Create Order Saga
+### Example: Order Service and the Create Order Saga
 
 ![image alt text](image_9.png)
 
