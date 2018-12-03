@@ -78,7 +78,7 @@
 
 * [Maturity Model for REST](https://martinfowler.com/articles/richardsonMaturityModel.html)
 
-* Pattern: [Remote procedure invocation](http://microservices.io/patterns/communication-style/ messaging.html): A client invokes a service using a synchronous, remote procedure invocation-based protocol, such as REST. ![image alt text](image_1.png)
+* Pattern: [Remote procedure invocation](http://microservices.io/patterns/communication-style/messaging.html): A client invokes a service using a synchronous, remote procedure invocation-based protocol, such as REST. ![image alt text](image_1.png)
 
 * Benefits of REST
 
