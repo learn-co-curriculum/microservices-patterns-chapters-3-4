@@ -198,4 +198,18 @@ Eliminating Synchronous Interaction
 
     3. Finish processing after returning a response
 
+## Questions / Observations:
+
+* If we went for an API-first approach, what would that look like for us? Could there be a software design phase? Does that work with Agile?
+
+* The author talks a lot about using Java, GoLang, and .NET for microservices. How are we thinking about our future services? Will they be all Elixir? Will there be other languages? (Is Ruby dead???)
+
+* With all this hexagonal design, is anyone else reminded of Settlers of Catan?
+
+* What REST level are we? Also, what’s the deal with HATEOAS? Do people actually want that? It sounds insane.
+
+* Are there places in our codebase where we should be using a circuit-breaker pattern right now?
+
+* Regarding the service discovery, is that because we would want to communicate over  a private network rather than a public one?
+
 <p class='util--hide'>View <a href='https://learn.co/lessons/microservices-patterns-chapters-3-4'>Microservices Patterns - Chapters 3 & 4</a> on Learn.co and start learning to code for free.</p>
